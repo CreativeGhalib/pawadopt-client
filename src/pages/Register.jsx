@@ -218,7 +218,7 @@ const Register = () => {
 
       <div className="hidden overflow-hidden rounded-[2rem] border-8 border-white shadow-soft dark:border-slate-900 lg:block">
         <img
-          src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1200"
+          src="/images/register-panel.webp"
           alt="Friendly pet waiting for adoption"
           className="h-[720px] w-full object-cover"
         />

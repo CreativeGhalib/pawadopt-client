@@ -139,7 +139,7 @@ const Home = () => {
             <div className="absolute -inset-3 rounded-[2rem] bg-primary/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2rem] border-8 border-white bg-white shadow-soft dark:border-slate-900 dark:bg-slate-900">
               <img
-                src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1400"
+                src="/images/banner-hero.webp"
                 alt="Adoptable pets resting with their adopter"
                 className="h-[420px] w-full object-cover md:h-[580px]"
               />
@@ -245,7 +245,7 @@ const Home = () => {
         <div className="container-width grid gap-10 lg:grid-cols-2 lg:items-center">
           <div className="overflow-hidden rounded-[2rem] border-8 border-white shadow-soft dark:border-slate-900">
             <img
-              src="https://images.unsplash.com/photo-1601758063541-d2f50b4aafb2?q=80&w=1200"
+              src="/images/success-story.webp"
               alt="Pet care supplies and calm indoor pet setup"
               className="h-[420px] w-full object-cover"
             />

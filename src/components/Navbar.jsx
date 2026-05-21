@@ -84,7 +84,7 @@ const Navbar = () => {
             <div className="group relative">
               <button className="flex items-center gap-3 rounded-full border border-transparent p-1 transition hover:border-outline hover:bg-white dark:hover:border-slate-700 dark:hover:bg-slate-900">
                 <Avatar
-                  src={user.photoURL || "https://i.ibb.co/7JZfF7S/default-avatar.png"}
+                  src={user.photoURL || "/images/avatar-default.png"}
                   name={user.displayName || user.email}
                   size="sm"
                   className="ring-2 ring-primary/10"

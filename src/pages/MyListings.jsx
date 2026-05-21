@@ -240,7 +240,7 @@ const ListingCard = ({ pet, onViewRequests, onEdit, onDelete }) => {
       {/* image */}
       <div className="relative aspect-[16/9] overflow-hidden bg-surface-low">
         <img
-          src={imageUrl || "https://images.unsplash.com/photo-1450778869180-41d0601e046e?q=80&w=900"}
+          src={imageUrl || "/images/pet-placeholder.webp"}
           alt={petName}
           className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
         />

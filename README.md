@@ -4,8 +4,7 @@ A modern, recruiter-friendly pet adoption frontend built with React, Vite, Tailw
 
 ## Live URL
 
-> Replace with your deployed Vercel URL after deployment  
-> Example: `https://pawadopt.vercel.app`
+**[https://pawadopt-client.vercel.app](https://pawadopt-client.vercel.app)**
 
 ## Features
 

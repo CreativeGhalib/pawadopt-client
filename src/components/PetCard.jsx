@@ -20,7 +20,7 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-outline bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-soft dark:border-slate-800 dark:bg-slate-900">
       <div className="relative aspect-[4/3] overflow-hidden bg-surface-low">
         <img
-          src={imageUrl || "https://images.unsplash.com/photo-1450778869180-41d0601e046e?q=80&w=900"}
+          src={imageUrl || "/images/pet-placeholder.webp"}
           alt={petName}
           className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
         />

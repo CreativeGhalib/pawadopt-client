@@ -66,7 +66,7 @@ const Login = () => {
     <section className="container-width grid min-h-[calc(100vh-88px)] items-center gap-10 py-12 lg:grid-cols-2">
       <div className="hidden overflow-hidden rounded-[2rem] border-8 border-white shadow-soft dark:border-slate-900 lg:block">
         <img
-          src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?q=80&w=1200"
+          src="/images/login-panel.webp"
           alt="Happy adopted pet resting at home"
           className="h-[620px] w-full object-cover"
         />
