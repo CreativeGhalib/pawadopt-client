@@ -8,7 +8,6 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import LoadingSpinner from "../components/LoadingSpinner";
 import DeleteConfirmModal from "../components/DeleteConfirmModal";
 
-// ---------- status chip ----------
 
 const StatusChip = ({ status }) => {
   const map = {
@@ -23,7 +22,6 @@ const StatusChip = ({ status }) => {
   );
 };
 
-// ---------- format date helper ----------
 
 const fmtDate = (iso) => {
   if (!iso) return "—";
@@ -34,7 +32,6 @@ const fmtDate = (iso) => {
   });
 };
 
-// ---------- MyRequests ----------
 
 const MyRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -50,7 +47,6 @@ const MyRequests = () => {
 
   const axiosSecure = useAxiosSecure();
 
-  // ---------- fetch ----------
 
   const fetchRequests = useCallback(async () => {
     setLoading(true);
@@ -69,7 +65,6 @@ const MyRequests = () => {
     fetchRequests();
   }, [fetchRequests]);
 
-  // ---------- cancel request ----------
 
   const handleCancelConfirm = async () => {
     const req = cancelModal.request;
@@ -88,7 +83,6 @@ const MyRequests = () => {
     }
   };
 
-  // ---------- render ----------
 
   return (
     <div>

@@ -22,7 +22,6 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-// ---------- small helpers ----------
 
 const Detail = ({ icon: Icon, label, value }) => (
   <div className="flex items-start gap-3 rounded-2xl border border-outline bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
@@ -54,7 +53,6 @@ const StatusChip = ({ status }) => {
   );
 };
 
-// ---------- Adoption Form Modal ----------
 
 const AdoptionModal = ({ pet, user, onClose, axiosSecure }) => {
   const [form, setForm] = useState({ pickupDate: "", message: "" });
@@ -249,7 +247,6 @@ const AdoptionModal = ({ pet, user, onClose, axiosSecure }) => {
   );
 };
 
-// ---------- PetDetails ----------
 
 const PetDetails = () => {
   const { id } = useParams();

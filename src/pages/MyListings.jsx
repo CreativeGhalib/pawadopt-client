@@ -10,7 +10,6 @@ import RequestsModal from "../components/RequestsModal";
 import DeleteConfirmModal from "../components/DeleteConfirmModal";
 import EditPetModal from "../components/EditPetModal";
 
-// ---------- small helper components ----------
 
 const StatCard = ({ label, value, accent }) => (
   <div className="rounded-2xl border border-outline bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
@@ -35,7 +34,6 @@ const StatusChip = ({ status }) => {
   );
 };
 
-// ---------- main component ----------
 
 const MyListings = () => {
   const [pets, setPets] = useState([]);
@@ -53,7 +51,6 @@ const MyListings = () => {
 
   const axiosSecure = useAxiosSecure();
 
-  // ---------- fetch owner pets ----------
 
   const fetchListings = useCallback(async () => {
     setLoading(true);
@@ -72,13 +69,11 @@ const MyListings = () => {
     fetchListings();
   }, [fetchListings]);
 
-  // ---------- derived stats ----------
 
   const totalListings = pets.length;
   const availableCount = pets.filter((p) => p.status !== "adopted").length;
   const adoptedCount = pets.filter((p) => p.status === "adopted").length;
 
-  // ---------- delete pet ----------
 
   const handleDeleteConfirm = async () => {
     const pet = deleteModal.pet;
@@ -97,7 +92,6 @@ const MyListings = () => {
     }
   };
 
-  // ---------- open requests modal ----------
 
   const openRequestsModal = (pet) => setRequestsModal({ open: true, pet });
   const closeRequestsModal = () => setRequestsModal({ open: false, pet: null });
@@ -109,7 +103,6 @@ const MyListings = () => {
     );
   };
 
-  // ---------- edit pet callbacks ----------
 
   const openEditModal = (pet) => setEditModal({ open: true, pet });
   const closeEditModal = () => setEditModal({ open: false, pet: null });
@@ -119,7 +112,6 @@ const MyListings = () => {
     closeEditModal();
   };
 
-  // ---------- render ----------
 
   return (
     <div>
@@ -239,7 +231,6 @@ const MyListings = () => {
   );
 };
 
-// ---------- listing card ----------
 
 const ListingCard = ({ pet, onViewRequests, onEdit, onDelete }) => {
   const { _id, petName, imageUrl, adoptionFee, status, species, breed } = pet;

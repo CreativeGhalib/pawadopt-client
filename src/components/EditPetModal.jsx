@@ -13,7 +13,6 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@heroui/react";
 import toast from "react-hot-toast";
 
-// ---------- constants ----------
 
 const speciesOptions = ["Dog", "Cat", "Bird", "Rabbit", "Fish", "Other"];
 const genderOptions = ["Male", "Female", "Unknown"];
@@ -25,11 +24,7 @@ const vaccinationOptions = [
   "Unknown",
 ];
 
-// ---------- EditPetModal ----------
 
-/**
- * @param {{ pet: object, onClose: () => void, onUpdated: (pet: object) => void, axiosSecure: import("axios").AxiosInstance }} props
- */
 const EditPetModal = ({ pet, onClose, onUpdated, axiosSecure }) => {
   const [form, setForm] = useState({
     petName: pet.petName || "",

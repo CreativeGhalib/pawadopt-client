@@ -4,7 +4,6 @@ import { Button, Chip } from "@heroui/react";
 import { CalendarDays, Check, Loader2, PawPrint, Users, X, XCircle } from "lucide-react";
 import toast from "react-hot-toast";
 
-// ---------- status chip ----------
 
 const RequestStatusChip = ({ status }) => {
   const map = {
@@ -19,7 +18,6 @@ const RequestStatusChip = ({ status }) => {
   );
 };
 
-// ---------- main component ----------
 
 const RequestsModal = ({ pet, onClose, axiosSecure, onPetAdopted }) => {
   const [requests, setRequests] = useState([]);
@@ -27,7 +25,6 @@ const RequestsModal = ({ pet, onClose, axiosSecure, onPetAdopted }) => {
   const [error, setError] = useState("");
   const [actionId, setActionId] = useState(null); // id currently being approved/rejected
 
-  // ---------- fetch requests ----------
 
   const fetchRequests = useCallback(async () => {
     setLoading(true);
@@ -46,7 +43,6 @@ const RequestsModal = ({ pet, onClose, axiosSecure, onPetAdopted }) => {
     fetchRequests();
   }, [fetchRequests]);
 
-  // ---------- approve / reject ----------
 
   const handleDecision = async (requestId, action) => {
     setActionId(requestId);
@@ -75,13 +71,11 @@ const RequestsModal = ({ pet, onClose, axiosSecure, onPetAdopted }) => {
     }
   };
 
-  // ---------- close on backdrop click ----------
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) onClose();
   };
 
-  // ---------- render ----------
 
   return (
     <AnimatePresence>
@@ -173,7 +167,6 @@ const RequestsModal = ({ pet, onClose, axiosSecure, onPetAdopted }) => {
   );
 };
 
-// ---------- request row ----------
 
 const RequestRow = ({ request, isActing, onDecision }) => {
   const { _id, requesterName, requesterEmail, pickupDate, status } = request;
