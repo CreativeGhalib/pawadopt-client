@@ -159,7 +159,15 @@ const MyRequests = () => {
                     className="transition hover:bg-surface-low dark:hover:bg-slate-800/50"
                   >
                     <td className="px-5 py-4">
-                      <p className="font-bold text-ink dark:text-white">{req.petName}</p>
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={req.petImage || "/images/pet-placeholder.webp"}
+                          alt={req.petName}
+                          className="h-12 w-12 rounded-xl object-cover border border-outline dark:border-slate-700"
+                          onError={(e) => { e.target.src = "/images/pet-placeholder.webp"; }}
+                        />
+                        <p className="font-bold text-ink dark:text-white">{req.petName}</p>
+                      </div>
                     </td>
                     <td className="px-5 py-4 text-sm text-muted dark:text-slate-300">
                       <span className="flex items-center gap-1.5">
@@ -214,11 +222,19 @@ const MyRequests = () => {
                 key={req._id}
                 className="rounded-3xl border border-outline bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900"
               >
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-heading text-lg font-extrabold text-ink dark:text-white">
-                    {req.petName}
-                  </h3>
-                  <StatusChip status={req.status} />
+                <div className="flex items-start gap-3">
+                  <img
+                    src={req.petImage || "/images/pet-placeholder.webp"}
+                    alt={req.petName}
+                    className="h-16 w-16 rounded-xl object-cover border border-outline dark:border-slate-700 flex-shrink-0"
+                    onError={(e) => { e.target.src = "/images/pet-placeholder.webp"; }}
+                  />
+                  <div className="flex-1 flex items-start justify-between gap-2">
+                    <h3 className="font-heading text-lg font-extrabold text-ink dark:text-white">
+                      {req.petName}
+                    </h3>
+                    <StatusChip status={req.status} />
+                  </div>
                 </div>
                 <div className="mt-3 space-y-1.5 text-sm text-muted dark:text-slate-300">
                   <p className="flex items-center gap-1.5">

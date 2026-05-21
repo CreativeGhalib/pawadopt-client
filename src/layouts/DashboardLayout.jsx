@@ -1,12 +1,14 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { ClipboardList, ListPlus, PawPrint } from "lucide-react";
+import { ClipboardList, Heart, ListPlus, PawPrint } from "lucide-react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const DashboardLayout = () => {
   const menuItems = [
     { name: "My Requests", path: "/dashboard/my-requests", icon: ClipboardList },
     { name: "Add Pet", path: "/dashboard/add-pet", icon: ListPlus },
     { name: "My Listings", path: "/dashboard/my-listings", icon: PawPrint },
+    { name: "My Wishlist", path: "/dashboard/wishlist", icon: Heart },
   ];
 
   const menuClass = ({ isActive }) =>
@@ -43,6 +45,7 @@ const DashboardLayout = () => {
           <Outlet />
         </section>
       </div>
+      <Footer />
     </div>
   );
 };

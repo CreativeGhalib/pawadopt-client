@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { Button, Chip } from "@heroui/react";
-import { HeartHandshake, MapPin, PawPrint } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Heart, HeartHandshake, MapPin, PawPrint } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
+import axiosSecure from "../api/axiosSecure";
 
 const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
   const {
@@ -15,6 +19,37 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
     adoptionFee,
     status,
   } = pet;
+
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [wishlisted, setWishlisted] = useState(false);
+  const [wishing, setWishing] = useState(false);
+
+  const handleWishlist = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!user) {
+      toast("Login to save to wishlist");
+      navigate("/login");
+      return;
+    }
+    if (wishing) return;
+    setWishing(true);
+    try {
+      await axiosSecure.post("/wishlists", { petId: _id });
+      setWishlisted(true);
+      toast.success(`${petName} saved to wishlist!`);
+    } catch (err) {
+      if (err.response?.status === 409) {
+        setWishlisted(true);
+        toast("Already in your wishlist");
+      } else {
+        toast.error("Failed to save to wishlist");
+      }
+    } finally {
+      setWishing(false);
+    }
+  };
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-outline bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-soft dark:border-slate-800 dark:bg-slate-900">
@@ -39,6 +74,19 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
             {status || "available"}
           </Chip>
         </div>
+
+        <button
+          onClick={handleWishlist}
+          disabled={wishing}
+          aria-label={wishlisted ? "Saved to wishlist" : "Save to wishlist"}
+          className={`absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-all duration-200 ${
+            wishlisted
+              ? "bg-red-500 text-white"
+              : "bg-white/90 text-slate-400 hover:bg-red-50 hover:text-red-500 dark:bg-slate-900/80 dark:text-slate-300"
+          }`}
+        >
+          <Heart className={`h-4 w-4 ${wishlisted ? "fill-current" : ""}`} />
+        </button>
       </div>
 
       <div className="flex grow flex-col p-5">

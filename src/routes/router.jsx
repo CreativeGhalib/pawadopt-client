@@ -6,6 +6,7 @@ import AllPets from "../pages/AllPets";
 import MyListings from "../pages/MyListings";
 import MyRequests from "../pages/MyRequests";
 import PetDetails from "../pages/PetDetails";
+import Wishlist from "../pages/Wishlist";
 import PrivateRoute from "./PrivateRoute";
 import FoundationPage from "../pages/FoundationPage";
 import Home from "../pages/Home";
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "my-listings",
         element: <MyListings />,
+      },
+      {
+        path: "wishlist",
+        element: <Wishlist />,
       },
     ],
   },
