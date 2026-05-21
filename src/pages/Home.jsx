@@ -284,6 +284,47 @@ const Home = () => {
           </p>
         </div>
       </section>
+
+      {/* How It Works — extra static section */}
+      <section className="bg-white py-16 dark:bg-slate-900">
+        <div className="container-width">
+          <SectionHeader
+            eyebrow="How It Works"
+            title="Three steps to a new companion"
+            description="Adopting a pet through PawAdopt is straightforward. Browse, request, and welcome your new family member home."
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {[
+              {
+                step: "01",
+                title: "Browse available pets",
+                body: "Search and filter our listings by name, species, or adoption fee to find a pet that suits your home.",
+              },
+              {
+                step: "02",
+                title: "Submit an adoption request",
+                body: "Choose a pickup date, write a short message, and send your request directly to the pet owner or shelter.",
+              },
+              {
+                step: "03",
+                title: "Get approved and adopt",
+                body: "The owner reviews your request and approves the best match. Once approved, coordinate pickup and bring your pet home.",
+              },
+            ].map(({ step, title, body }) => (
+              <div
+                key={step}
+                className="relative rounded-3xl border border-outline bg-surface p-7 shadow-sm dark:border-slate-800 dark:bg-slate-950"
+              >
+                <span className="font-heading text-5xl font-extrabold text-primary/15 dark:text-primary/20">
+                  {step}
+                </span>
+                <h3 className="mt-2 font-heading text-xl font-extrabold text-ink dark:text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-muted dark:text-slate-300">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
