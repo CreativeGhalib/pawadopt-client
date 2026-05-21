@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #0b1c30;
+  background: #f8f9ff;
+  font-family: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.dark body {
+  color: #eaf1ff;
+  background: #111827;
+}
+
+.container-width {
+  width: min(100% - 32px, 1280px);
+  margin-inline: auto;
+}
+
+.focus-glow:focus {
+  box-shadow: 0 0 0 4px rgba(0, 107, 95, 0.12);
+}
