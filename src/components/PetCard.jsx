@@ -70,13 +70,18 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
           </Button>
 
           {showAdopt && (
-            <Button
-              onClick={() => onAdopt?.(pet)}
-              isDisabled={status === "adopted"}
-              className="rounded-full bg-secondary font-bold text-white disabled:opacity-60"
-            >
-              <HeartHandshake className="h-4 w-4" /> Adopt Now
-            </Button>
+            status === "adopted" ? (
+              <div className="flex items-center justify-center rounded-full bg-amber-100 px-4 py-2 text-sm font-bold text-amber-700 dark:bg-amber-950/30 dark:text-amber-400">
+                Adopted
+              </div>
+            ) : (
+              <Button
+                onClick={() => onAdopt?.(pet)}
+                className="rounded-full bg-secondary font-bold text-white"
+              >
+                <HeartHandshake className="h-4 w-4" /> Adopt Now
+              </Button>
+            )
           )}
         </div>
       </div>
