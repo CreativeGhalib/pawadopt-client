@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { ClipboardList, Heart, ListPlus, PawPrint } from "lucide-react";
 import Navbar from "../components/Navbar";
+import ScrollToTop from "../components/ScrollToTop";
 
 const DashboardLayout = () => {
   const menuItems = [
@@ -19,6 +20,7 @@ const DashboardLayout = () => {
 
   return (
     <div className="min-h-screen bg-surface text-ink dark:bg-slate-950 dark:text-slate-100">
+      <ScrollToTop />
       <Navbar />
       <div className="container-width grid gap-6 py-8 lg:grid-cols-[280px_1fr]">
         <aside className="h-fit rounded-3xl border border-outline bg-white p-4 shadow-soft dark:border-slate-800 dark:bg-slate-900">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Chip } from "@heroui/react";
 import { Heart, HeartHandshake, MapPin, PawPrint } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import axiosSecure from "../api/axiosSecure";
@@ -49,6 +49,18 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
     } finally {
       setWishing(false);
     }
+  };
+
+  const handleViewDetails = () => {
+    const target = `/pets/${_id}`;
+
+    if (!user) {
+      toast.error("Please login to view pet details");
+      navigate("/login", { state: { from: { pathname: target } } });
+      return;
+    }
+
+    navigate(target);
   };
 
   return (
@@ -109,8 +121,7 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
 
         <div className={`mt-auto grid gap-3 ${showAdopt ? "sm:grid-cols-2" : ""}`}>
           <Button
-            as={Link}
-            to={`/pets/${_id}`}
+            onClick={handleViewDetails}
             className="rounded-full border border-primary bg-white font-bold text-primary hover:bg-primary hover:text-white dark:bg-slate-900"
             variant="bordered"
           >

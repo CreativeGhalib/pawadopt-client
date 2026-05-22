@@ -1,6 +1,6 @@
 import { Button } from "@heroui/react";
 import { Chrome, Lock, Mail, PawPrint } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosPublic from "../api/axiosPublic";
@@ -9,10 +9,16 @@ import authErrorMessage from "../utils/authErrorMessage";
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);
-  const { loginUser, googleLogin } = useAuth();
+  const { user, loading, loginUser, googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (!loading && user) {
+      navigate(from, { replace: true });
+    }
+  }, [from, loading, navigate, user]);
 
   const syncJwt = async (firebaseUser) => {
     await axiosPublic.post("/jwt", {
@@ -47,11 +53,17 @@ const Login = () => {
 
     try {
       const result = await googleLogin();
-      await axiosPublic.post("/users", {
-        email: result.user.email,
-        name: result.user.displayName,
-        photoURL: result.user.photoURL,
-      });
+      await axiosPublic
+        .post("/users", {
+          email: result.user.email,
+          name: result.user.displayName,
+          photoURL: result.user.photoURL,
+        })
+        .catch((error) => {
+          if (error.response?.status !== 409) {
+            throw error;
+          }
+        });
       await syncJwt(result.user);
       toast.success("Logged in with Google");
       navigate(from, { replace: true });

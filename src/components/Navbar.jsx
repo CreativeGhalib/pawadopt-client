@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Avatar, Button } from "@heroui/react";
 import { LayoutDashboard, LogOut, Menu, PawPrint, X } from "lucide-react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import ThemeToggle from "./ThemeToggle";
 import useAuth from "../hooks/useAuth";
@@ -11,6 +11,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const { user, logOut, loading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const publicNavItems = [
     { name: "Home", path: "/" },
@@ -30,8 +31,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
   const handleLogOut = async () => {
     try {
+      setIsMenuOpen(false);
       await logOut();
       toast.success("Logged out successfully");
       navigate("/");
@@ -56,7 +62,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container-width flex min-h-16 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2 group">
+        <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 group">
           <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white transition-transform group-hover:rotate-6">
             <PawPrint className="h-5 w-5" />
           </span>
@@ -142,18 +148,38 @@ const Navbar = () => {
             ))}
 
             {!loading && !user && (
-              <Button as={Link} to="/login" className="mt-2 rounded-xl bg-primary font-bold text-white">
+              <Button
+                as={Link}
+                to="/login"
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-2 rounded-xl bg-primary font-bold text-white"
+              >
                 Login
               </Button>
             )}
 
             {!loading && user && (
-              <button
-                onClick={handleLogOut}
-                className="mt-2 rounded-xl px-4 py-3 text-left text-sm font-semibold text-red-500 hover:bg-red-50"
-              >
-                Logout
-              </button>
+              <>
+                <Link
+                  to="/dashboard"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="mt-2 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold hover:bg-surface-low dark:hover:bg-slate-900"
+                >
+                  <LayoutDashboard className="h-4 w-4" /> Dashboard
+                </Link>
+                <button
+                  onClick={handleLogOut}
+                  className="rounded-xl px-4 py-3 text-left text-sm font-semibold text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30"
+                >
+                  Logout
+                </button>
+              </>
+            )}
+
+            {loading && (
+              <div className="rounded-xl px-4 py-3 text-sm font-semibold text-muted dark:text-slate-300">
+                Checking session...
+              </div>
             )}
           </div>
         </div>
