@@ -1,56 +1,59 @@
 # PawAdopt Client
 
-A modern, recruiter-friendly pet adoption frontend built with React, Vite, Tailwind CSS, HeroUI, and Firebase Authentication.
+PawAdopt is the frontend for a pet adoption platform where visitors can browse pets and signed-in users can send adoption requests. I built this client with React, Firebase Authentication, and a small dashboard for adopters and pet owners.
 
-## Live URL
+Live site: [https://pawadopt-client.vercel.app](https://pawadopt-client.vercel.app)
 
-**[https://pawadopt-client.vercel.app](https://pawadopt-client.vercel.app)**
+## What This App Does
 
-## Features
+- Shows available pets with search, species filter, and sorting.
+- Opens a full pet details page before a user sends an adoption request.
+- Keeps private routes stable on reload by waiting for Firebase auth state.
+- Lets owners add pets, update listings, delete listings, and review requests.
+- Uses toast messages instead of browser alerts.
+- Includes dark and light mode.
+- Uses Framer Motion for small page and modal transitions.
+- Works across mobile, tablet, and desktop layouts.
 
-- Browse all available pets with real-time search, species filter, and sort controls
-- Detailed pet profiles with a full adoption request form (modal)
-- JWT-secured private routes with session persistence on page reload
-- Dashboard for managing your own listings, reviewing adoption requests, and tracking sent requests
-- Dark / light theme toggle with localStorage persistence
-- Smooth Framer Motion animations on hero, cards, and modals
-- Fully responsive layout for mobile, tablet, and desktop
+## Packages Used
 
-## Tech Stack
-
-| Package | Purpose |
-|---|---|
-| `react` + `react-dom` | UI library |
-| `react-router-dom` | Client-side routing |
-| `tailwindcss` + `@heroui/react` | Styling and UI components |
-| `firebase` | Email/password + Google authentication |
-| `axios` | HTTP client with secure interceptor |
-| `react-hot-toast` | Toast notifications |
+| Package | Why it is used |
+| --- | --- |
+| `react`, `react-dom` | Main UI framework |
+| `react-router-dom` | Page routing and private route flow |
+| `firebase` | Email/password and Google authentication |
+| `axios` | API requests to the backend |
+| `react-hot-toast` | Success and error notifications |
+| `@heroui/react` | Buttons, chips, avatar, and UI pieces |
+| `tailwindcss` | Responsive styling |
 | `framer-motion` | Animations |
-| `lucide-react` | Icon set |
+| `lucide-react` | Icons |
 
-## Installation
+## Main Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Home page with banner, featured pets, and static sections |
+| `/pets` | Public page for browsing all pets |
+| `/pets/:id` | Private pet details and adoption request page |
+| `/login` | Login page |
+| `/register` | Registration page |
+| `/dashboard/my-requests` | User's adoption requests |
+| `/dashboard/add-pet` | Add a new pet listing |
+| `/dashboard/my-listings` | Manage owner listings and requests |
+| `/dashboard/wishlist` | Saved wishlist pets |
+
+## Local Setup
+
+Install dependencies:
 
 ```bash
-# 1. Clone the repository and navigate to the client folder
-cd client
-
-# 2. Install dependencies
 npm install
-
-# 3. Set up environment variables
-cp .env.example .env
-# Then fill in your Firebase config and backend URL in .env
-
-# 4. Start development server
-npm run dev
 ```
 
-## Environment Variables
+Create a `.env` file:
 
-Create a `.env` file in the `client/` folder (see `.env.example`):
-
-```
+```bash
 VITE_API_URL=http://localhost:5000
 VITE_FIREBASE_API_KEY=your_key
 VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
@@ -60,16 +63,18 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
 ```
 
-## Deployment (Vercel)
+Run locally:
 
-1. Push the `client/` folder to a separate GitHub repository.
-2. Import the repository on [vercel.com](https://vercel.com).
-3. Set the **Root Directory** to `.` (since the repo IS the client).
-4. Add all `VITE_*` environment variables in the Vercel dashboard.
-5. The included `vercel.json` handles SPA routing, so route reloads do not show 404 errors.
-
-```json
-{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
+```bash
+npm run dev
 ```
 
-6. Deploy. Vercel auto-builds with `npm run build`.
+Build before deployment:
+
+```bash
+npm run build
+```
+
+## Deployment Notes
+
+The client is deployed on Vercel. The `vercel.json` file rewrites all routes to `index.html`, so direct reloads like `/pets` or `/dashboard/my-requests` do not return a 404.
