@@ -4,6 +4,14 @@ PawAdopt is the frontend for a pet adoption platform where visitors can browse p
 
 Live site: [https://pawadopt-client.vercel.app](https://pawadopt-client.vercel.app)
 
+## Submission Links
+
+Client-side GitHub Repository: [https://github.com/CreativeGhalib/pawadopt-client](https://github.com/CreativeGhalib/pawadopt-client)
+
+Server-side GitHub Repository: [https://github.com/CreativeGhalib/pawadopt-server](https://github.com/CreativeGhalib/pawadopt-server)
+
+Live Website Link: [https://pawadopt-client.vercel.app](https://pawadopt-client.vercel.app)
+
 ## What This App Does
 
 - Shows available pets with search, species filter, and sorting.
