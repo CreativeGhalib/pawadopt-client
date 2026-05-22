@@ -2,10 +2,13 @@ import { Button } from "@heroui/react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
+  BadgeCheck,
   CalendarCheck,
+  ClipboardCheck,
   HeartHandshake,
   Home as HomeIcon,
   PawPrint,
+  Search,
   ShieldCheck,
   Sparkles,
   Stethoscope,
@@ -296,31 +299,33 @@ const Home = () => {
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {[
               {
-                step: "01",
+                icon: Search,
                 title: "Browse available pets",
                 body: "Search and filter our listings by name, species, or adoption fee to find a pet that suits your home.",
               },
               {
-                step: "02",
+                icon: ClipboardCheck,
                 title: "Submit an adoption request",
                 body: "Choose a pickup date, write a short message, and send your request directly to the pet owner or shelter.",
               },
               {
-                step: "03",
+                icon: BadgeCheck,
                 title: "Get approved and adopt",
                 body: "The owner reviews your request and approves the best match. Once approved, coordinate pickup and bring your pet home.",
               },
-            ].map(({ step, title, body }) => (
-              <div
-                key={step}
-                className="relative rounded-3xl border border-outline bg-surface p-7 shadow-sm dark:border-slate-800 dark:bg-slate-950"
+            ].map(({ icon: Icon, title, body }) => (
+              <motion.div
+                key={title}
+                whileHover={{ y: -6 }}
+                className="group relative overflow-hidden rounded-3xl border border-outline bg-surface p-7 shadow-sm transition-colors duration-300 hover:border-primary/30 hover:bg-white hover:shadow-soft dark:border-slate-800 dark:bg-slate-950 dark:hover:border-primary/40 dark:hover:bg-slate-900"
               >
-                <span className="font-heading text-5xl font-extrabold text-primary/15 dark:text-primary/20">
-                  {step}
-                </span>
-                <h3 className="mt-2 font-heading text-xl font-extrabold text-ink dark:text-white">{title}</h3>
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-primary-soft to-secondary opacity-80" />
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15 transition duration-300 group-hover:bg-primary group-hover:text-white dark:bg-primary/15">
+                  <Icon className="h-7 w-7" />
+                </div>
+                <h3 className="font-heading text-xl font-extrabold text-ink dark:text-white">{title}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted dark:text-slate-300">{body}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
