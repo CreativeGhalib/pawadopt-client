@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { ClipboardList, Heart, ListPlus, PawPrint } from "lucide-react";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const DashboardLayout = () => {
   const menuItems = [
@@ -45,7 +44,6 @@ const DashboardLayout = () => {
           <Outlet />
         </section>
       </div>
-      <Footer />
     </div>
   );
 };
