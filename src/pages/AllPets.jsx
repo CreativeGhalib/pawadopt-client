@@ -26,7 +26,7 @@ const AllPets = () => {
   const [sort, setSort] = useState("newest");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
   const queryParams = useMemo(() => {
@@ -79,6 +79,11 @@ const AllPets = () => {
 
   const handleAdoptNow = (pet) => {
     const target = `/pets/${pet._id}`;
+
+    if (authLoading) {
+      navigate(target);
+      return;
+    }
 
     if (!user) {
       toast.error("Please login before sending an adoption request");

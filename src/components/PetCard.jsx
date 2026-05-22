@@ -20,7 +20,7 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
     status,
   } = pet;
 
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [wishlisted, setWishlisted] = useState(false);
   const [wishing, setWishing] = useState(false);
@@ -28,9 +28,14 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
   const handleWishlist = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (authLoading) {
+      toast("Checking your session. Please try again in a moment.");
+      return;
+    }
+
     if (!user) {
       toast("Login to save to wishlist");
-      navigate("/login");
+      navigate("/login", { state: { from: { pathname: "/pets" } } });
       return;
     }
     if (wishing) return;
@@ -53,6 +58,11 @@ const PetCard = ({ pet, showAdopt = false, onAdopt }) => {
 
   const handleViewDetails = () => {
     const target = `/pets/${_id}`;
+
+    if (authLoading) {
+      navigate(target);
+      return;
+    }
 
     if (!user) {
       toast.error("Please login to view pet details");
